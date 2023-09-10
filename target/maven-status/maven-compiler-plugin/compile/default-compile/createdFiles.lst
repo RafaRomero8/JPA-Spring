@@ -1,0 +1,13 @@
+com\msproductos\controller\ProductoController.class
+com\msproductos\service\ProductoService.class
+com\msproductos\advice\GlobalExceptionHandler.class
+com\msproductos\impl\ProductoImplement.class
+com\msproductos\repository\DepartamentoRepository.class
+com\msproductos\request\ProductosRequest.class
+com\msproductos\entity\Departamento.class
+com\msproductos\exception\ResourceNotFoundException.class
+com\msproductos\errors\ApiErrors.class
+com\msproductos\exception\BussinesException.class
+com\msproductos\entity\Productos.class
+com\msproductos\repository\ProductoRepository.class
+com\msproductos\MsProductosApplication.class

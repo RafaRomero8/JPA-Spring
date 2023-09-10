@@ -1,0 +1,13 @@
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\exception\BussinesException.java
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\impl\ProductoImplement.java
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\entity\Departamento.java
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\exception\ResourceNotFoundException.java
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\MsProductosApplication.java
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\errors\ApiErrors.java
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\repository\ProductoRepository.java
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\service\ProductoService.java
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\entity\Productos.java
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\controller\ProductoController.java
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\repository\DepartamentoRepository.java
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\request\ProductosRequest.java
+C:\Users\rafaR\Documents\workspace-sts-3.9.13.RELEASE\ms-productos\src\main\java\com\msproductos\advice\GlobalExceptionHandler.java
