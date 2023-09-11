@@ -1,5 +1,6 @@
 package com.msproductos.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,13 +63,13 @@ public class ProductoImplement implements ProductoService {
 	@Override
 	public Productos guardar(ProductosRequest request) {// mediante atributo es el tipo de inyeccion que estamos
 														// utilizando
-
+		  //List<Productos> p = new Productos();
+		//List <Productos> p = new ArrayList<>();
 		// ProductosRequest
 		Productos p = new Productos();// Objeto vacio
    // System.out.println("MIRAR AQUI>>>>>>>>>>"+request.getDeptoID());
 		// VALIDACIONES PROPIAS DEL NEGOCIO
-		validation(request,p);
-                
+		validation(request,p);              
 		return p;
 	}
 
@@ -81,30 +82,9 @@ public class ProductoImplement implements ProductoService {
 			throw new ResourceNotFoundException("El Id producto no existe");
 			
 		}
-		
 		Productos p = repo.findById(request.getProductoId()).get();// con este metodo va a la BD a buscar el id
 		// opcional ,regresa un objeto opcional,si existe lo trae
 		
-//		if (!repo.findById(request.getProductoId()).isPresent()) {
-//			System.out.println("El Id producto no existe");
-//			throw new ResourceNotFoundException("El Id producto no existe");
-//		}
-		
-			//validation(request,p);
-//		if (!(request.getRefrigerado().equals("1") || request.getRefrigerado().equals("0"))) {
-//			throw new ResourceNotFoundException("Refrigerado solo puede ser 1 o 0");
-//			
-//		}else {
-//			p.setNombre(request.getNombre());
-//			p.setDeptoID(request.getDeptoID());
-//			p.setFecha_cad(request.getFecha_cad());
-//			p.setPrecio_compra(request.getPrecio_compra());
-//			p.setPrecio_venta(request.getPrecio_venta());
-//			p.setRefrigerado(request.getRefrigerado());
-//
-//			repo.save(p);// necesita una entidad de argumento
-//		}
-//	
 		validation(request,p);
 		return p;
 
