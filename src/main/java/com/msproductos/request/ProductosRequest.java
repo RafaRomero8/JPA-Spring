@@ -1,8 +1,11 @@
 package com.msproductos.request;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.validation.constraints.*;//lo usamos para validar que ele campo no este vacio y va arriba del atributo nombre
+
+import com.msproductos.entity.Productos;
 
 
 
@@ -28,7 +31,16 @@ public class ProductosRequest {
 	private String refrigerado;//esta validacion se pone en productoImplement
 	//ya que no hay otacion para este 
 	
+	private List<Productos> lisProductos;
 	
+	public List<Productos> getLisProductos() {
+		return lisProductos;
+	}
+
+	public void setLisProductos(List<Productos> lisProductos) {
+		this.lisProductos = lisProductos;
+	}
+
 	public ProductosRequest() {}
 	
 	public ProductosRequest(int productoId, int deptoID, String nombre, LocalDateTime fecha_cad, double precio_compra,

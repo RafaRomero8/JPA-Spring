@@ -18,10 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.msproductos.entity.Productos;
+import com.msproductos.generic.ProductoGeneric;
 import com.msproductos.impl.ProductoImplement;
 import com.msproductos.request.ProductosRequest;
 
-//es casi al equivalente a la clase Service de los otros proyecto s de hibernete y JDDBC
+//es casi al equivalente a la clase Service de los otros proyectos de hibernete y JDDBC
 //Solo que cambian las notaciones
 
 @RestController//cuando hay comunicacion entre una vista y una logica de negocio
@@ -35,6 +36,13 @@ public class ProductoController {
 	//en toda la aplicacion,si tengo 1000 peticiones solo toma 1 peticion
 	ProductoImplement logic;//
 	
+	
+//	@GetMapping("/")
+//	public String inicio() {
+//		return "Hola mundo"
+//		
+//	}
+	
 	//http://localhost:8090/marca 
 	@PostMapping
 	ResponseEntity<Productos> guardar(@Valid @RequestBody ProductosRequest request){
@@ -44,12 +52,24 @@ public class ProductoController {
 		return new ResponseEntity<Productos>(prod,HttpStatus.OK);
 	}//---------------
 	
+	
+	@PostMapping("save")
+	String save(@RequestBody ProductosRequest request) {
+		System.out.println("checar aqui>>>>>>");
+		ProductoGeneric c = logic.save(request);
+		c.setMensaje("Exitoso");
+		return c.toString();	
+	}
+	
+	
 	//http://localhost:8090/marca PUT   pasarle el id
 	@PutMapping
 	ResponseEntity<Productos> actualizar(@RequestBody ProductosRequest request){
 		Productos prod = logic.actualizar(request);
 		return new ResponseEntity<Productos>(prod,HttpStatus.OK);
 	}
+	
+	
 	
 	//http://localhost:8090/marca 
 	@GetMapping
@@ -64,6 +84,12 @@ public class ProductoController {
 		Productos prod = logic.buscar(id);
 		
 	      return new ResponseEntity<Productos>(prod,HttpStatus.OK);
+	}
+	
+	@GetMapping("buscar-por-nombre/{name}")
+	ResponseEntity <List<Productos>> buscar(@PathVariable String name) {
+		List<Productos> prod = logic.buscar(name);
+		return new ResponseEntity<List<Productos>>(prod, HttpStatus.OK);
 	}
 	
 	

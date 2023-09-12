@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.msproductos.entity.Productos;
 import com.msproductos.exception.BussinesException;
 import com.msproductos.exception.ResourceNotFoundException;
+import com.msproductos.generic.ProductoGeneric;
 import com.msproductos.repository.DepartamentoRepository;
 import com.msproductos.repository.ProductoRepository;
 import com.msproductos.request.ProductosRequest;
@@ -71,7 +72,17 @@ public class ProductoImplement implements ProductoService {
                 
 		return p;
 	}
-
+	
+	@Override
+	public ProductoGeneric save(ProductosRequest request) {
+		System.out.println("checar aqui>>>>>>");
+		ProductoGeneric c= new ProductoGeneric(); 
+		repo.saveAll(request.getLisProductos());
+		return c;
+	}
+	
+	
+	
 	@Override
 	public Productos actualizar(ProductosRequest request) {
 
@@ -120,10 +131,18 @@ public class ProductoImplement implements ProductoService {
 		return repo.findById(id).get();
 	}
 
+//	@Override
+//	public Productos buscar(String nombre) {
+//
+//		return null;
+//	}
+	
 	@Override
-	public Productos buscar(String nombre) {
-
-		return null;
+	public List<Productos> buscar(String nombre) {
+		List<Productos> c = null;
+			c=repo.getfindNombres(nombre);
+			return c;
+		
 	}
 
 	@Override
