@@ -24,8 +24,12 @@ public interface ProductoRepository extends JpaRepository<Productos,Integer>{
 	List<Productos> getfindNombres(@Param("name")String name);
 	
 	//Con SQL 
-	@Query(value = "SELECT * FROM PRODUCTOS  WHERE PRODUCTOS.NOMBRE LIKE %:name%",
+	@Query(value = "SELECT * FROM PRODUCTOS WHERE PRODUCTOS.NOMBRE LIKE %:name%",
 			nativeQuery = true)
 	List<Productos> getfindNombresSQL(@Param("name") String name);
+	
+	@Query (value="SELECT * FROM PRODUCTOS  WHERE PRODUCTOS.PRECIO_VENTA>=?1",
+			 nativeQuery = true )
+	List<Productos> getfindPrecioVenta(@Param("precio_venta") double precio_venta);
 	
 }

@@ -18,7 +18,8 @@ public interface ProductoService {
 	ProductoGeneric save(ProductosRequest request);
 	Productos buscar(int id) throws BussinesException;
 	List<Productos> buscar(String nombre) throws BussinesException;
-	List<Productos> search(String nombre) throws BussinesException ;
+	List<Productos> search(String nombre) throws BussinesException;
+	List<Productos> precio_venta(double precio_venta)throws ResourceNotFoundException;
 	String eliminar(int id) throws BussinesException;
 	List mostrar();
 

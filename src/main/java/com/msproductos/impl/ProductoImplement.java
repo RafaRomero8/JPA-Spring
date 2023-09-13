@@ -162,20 +162,40 @@ public class ProductoImplement implements ProductoService {
 		return repo.findAll();
 	}
 
+//	@Override
+//	public List<Productos> search(String nombre) throws BussinesException {
+//	
+//		System.out.println("checar aqui<<<<<<");
+//		try {
+//			
+//			System.out.println("checar dentro del try<<<<<<");
+//			List<Productos> product = repo.getfindNombresSQL(nombre);
+//			return product;
+//			
+//		}catch(Exception e) {
+//			
+//			throw new BussinesException(e.getMessage());
+//			//throw new ResourceNotFoundException("Refrigerado solo puede ser 1 o 0");
+//		}
+//		
+//	}
+
+	
 	@Override
 	public List<Productos> search(String nombre) throws BussinesException {
+		
+		List<Productos> c = null;
+		c=repo.getfindNombresSQL(nombre);
+		return c;
+		
+	}
 	
-		System.out.println("checar aqui<<<<<<");
-		try {
-			
-			System.out.println("checar dentro del try<<<<<<");
-			List<Productos> product = repo.getfindNombresSQL(nombre);
-			return product;
-			
-		}catch(Exception e) {
-			
-			throw new BussinesException(e.getMessage());
-		}
+	@Override
+	public List<Productos> precio_venta(double precio_venta) throws ResourceNotFoundException {
+		
+		List<Productos> c = null;
+		c=repo.getfindPrecioVenta(precio_venta);
+		return c;
 		
 	}
 

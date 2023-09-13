@@ -103,9 +103,19 @@ public class ProductoController {
 	
 	@GetMapping("search/{name}")
 	ResponseEntity <List<Productos>> search(@PathVariable String name) {
-		List<Productos> prod = logic.buscar(name);
+		List<Productos> prod = logic.search(name);
 		return new ResponseEntity<List<Productos>>(prod, HttpStatus.OK);
 	}
+	
+	@GetMapping("precio_venta/{precio}")
+	ResponseEntity <List<Productos>> precio_venta(@PathVariable double precio) {
+		List<Productos> prod = logic.precio_venta(precio);
+		return new ResponseEntity<List<Productos>>(prod, HttpStatus.OK);
+	}
+	
+	
+	
+	
 	
 //	@GetMapping("search")   //@RequestParam 
 //	public ResponseEntity<?> search(@RequestParam  String name){
