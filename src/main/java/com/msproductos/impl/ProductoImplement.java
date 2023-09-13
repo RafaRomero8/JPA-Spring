@@ -162,4 +162,21 @@ public class ProductoImplement implements ProductoService {
 		return repo.findAll();
 	}
 
+	@Override
+	public List<Productos> search(String nombre) throws BussinesException {
+	
+		System.out.println("checar aqui<<<<<<");
+		try {
+			
+			System.out.println("checar dentro del try<<<<<<");
+			List<Productos> product = repo.getfindNombresSQL(nombre);
+			return product;
+			
+		}catch(Exception e) {
+			
+			throw new BussinesException(e.getMessage());
+		}
+		
+	}
+
 }

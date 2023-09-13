@@ -29,7 +29,7 @@ public class ProductosRequest {
 	private double precio_venta;
 	
 	private String refrigerado;//esta validacion se pone en productoImplement
-	//ya que no hay otacion para este 
+	//ya que no hay anotacion para este 
 	
 	private List<Productos> lisProductos;
 	
@@ -43,8 +43,15 @@ public class ProductosRequest {
 
 	public ProductosRequest() {}
 	
-	public ProductosRequest(int productoId, int deptoID, String nombre, LocalDateTime fecha_cad, double precio_compra,
-			double precio_venta, String refrigerado) {
+
+	
+	public int getProductoId() {
+		return productoId;
+	}
+
+	public ProductosRequest(int productoId, int deptoID, String nombre, LocalDateTime fecha_cad,
+			double precio_compra, double precio_venta, String refrigerado, List<Productos> lisProductos) {
+		
 		//super();
 		this.productoId = productoId;
 		this.deptoID = deptoID;
@@ -53,10 +60,7 @@ public class ProductosRequest {
 		this.precio_compra = precio_compra;
 		this.precio_venta = precio_venta;
 		this.refrigerado = refrigerado;
-	}
-
-	public int getProductoId() {
-		return productoId;
+		this.lisProductos = lisProductos;
 	}
 
 	public void setProductoId(int productoId) {

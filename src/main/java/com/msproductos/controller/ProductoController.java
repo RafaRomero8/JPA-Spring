@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.msproductos.entity.Productos;
@@ -98,6 +99,32 @@ public class ProductoController {
 		String mensaje = logic.eliminar(id);
 		return new ResponseEntity<String>(mensaje,HttpStatus.OK);
 	}
+	
+	
+	@GetMapping("search/{name}")
+	ResponseEntity <List<Productos>> search(@PathVariable String name) {
+		List<Productos> prod = logic.buscar(name);
+		return new ResponseEntity<List<Productos>>(prod, HttpStatus.OK);
+	}
+	
+//	@GetMapping("search")   //@RequestParam 
+//	public ResponseEntity<?> search(@RequestParam  String name){
+//		
+//		try {
+////			System.out.println("checar eltry del controller");
+//			return  ResponseEntity.status(HttpStatus.OK).body(logic.search(name));
+//			
+////			List<Productos> prod = logic.buscar(name);
+////			return new ResponseEntity<List<Productos>>(prod, HttpStatus.OK);
+//			
+//		} catch (Exception e) {
+//			//return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \ "" + getMessage() +"\"}" ));
+//			//return (ResponseEntity<?>) ResponseEntity.status(HttpStatus.NOT_FOUND);
+//			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+//			
+//		}
+//		
+//	}
 	
 	
 
