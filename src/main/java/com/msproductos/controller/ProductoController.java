@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.msproductos.dto.Product_DepaDTO;
 import com.msproductos.entity.Productos;
 import com.msproductos.generic.ProductoGeneric;
 import com.msproductos.impl.ProductoImplement;
@@ -115,7 +116,15 @@ public class ProductoController {
 	
 	
 	
-	
+	@GetMapping("product_depa")
+	ResponseEntity <List<Product_DepaDTO>>  getDepaById(){
+		
+
+		List<Product_DepaDTO> prod = null;
+		prod = logic.getDepaById();
+		
+		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
+	}
 	
 //	@GetMapping("search")   //@RequestParam 
 //	public ResponseEntity<?> search(@RequestParam  String name){

@@ -1,10 +1,13 @@
 package com.msproductos.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.msproductos.dto.Product_DepaDTO;
 import com.msproductos.entity.Productos;
 import com.msproductos.exception.BussinesException;
 import com.msproductos.exception.ResourceNotFoundException;
@@ -13,6 +16,8 @@ import com.msproductos.repository.DepartamentoRepository;
 import com.msproductos.repository.ProductoRepository;
 import com.msproductos.request.ProductosRequest;
 import com.msproductos.service.ProductoService;
+import com.msproductos.util.ConvertEntityToDTO;
+
 
 //SEGUNDA CAPA
 @Service // lo utilizamos cuando hay logica de programacion implicada,LOGICA DE NEGOCIO
@@ -36,6 +41,11 @@ public class ProductoImplement implements ProductoService {
 	// por constructor
 
 	// YA NO TENEMOS QUE HACER consultas nativas de sql
+	
+	@Autowired
+	private ConvertEntityToDTO dtoEntity;
+	
+	
 	
 	public void validation(ProductosRequest request, Productos p) {
 		// validar que el depto exista
@@ -131,11 +141,7 @@ public class ProductoImplement implements ProductoService {
 		return repo.findById(id).get();
 	}
 
-//	@Override
-//	public Productos buscar(String nombre) {
-//
-//		return null;
-//	}
+
 	
 	@Override
 	public List<Productos> buscar(String nombre) {
@@ -151,6 +157,10 @@ public class ProductoImplement implements ProductoService {
 		if(!repo.findById(id).isPresent()) {
 			throw new BussinesException("No existe el id a eliminar");
 		}
+		//boolean condition;
+//		int x=0,y = 0;
+//		condition =(x>y)?x:y;
+		
 		
 		repo.deleteById(id);
 		return "Eliminado";
@@ -197,6 +207,46 @@ public class ProductoImplement implements ProductoService {
 		c=repo.getfindPrecioVenta(precio_venta);
 		return c;
 		
+	}
+
+
+	
+	/*
+	//public List<Product_DepaDTO> getDepaByI() throws BussinesException {
+		
+	
+	 //Productos producto = new Productos();
+//		 List<Product_DepaDTO> dto = null;
+//		 dto = repo.getByDepa
+//				 
+//				 (List<Product_DepaDTO>) new Product_DepaDTO();
+//				 
+//				 Product_DepaDTO(producto.getNombre(),
+//    				                                 //     dep.getNombre(),               
+//   		                                             producto.getFecha_cad(),
+//   		                                             producto.getRefrigerado() );
+		
+		
+		
+//    		  
+//		dto.setNombreProducto(producto.getNombre());
+//		dto.setNombreDepa(dep.getNombre());
+//		dto.setFecha_cad(producto.getFecha_cad());
+//		dto.setRefrigerado(producto.getRefrigerado());
+		
+
+		
+	//}
+*/
+	@Override
+	public List<Product_DepaDTO> getDepaById() throws BussinesException {
+		
+		List<Product_DepaDTO> list = null;
+		List<Productos> productos = repo.findAll();
+		list = productos.stream().map(param -> dtoEntity.convertDTO(param)).collect(Collectors.toList());
+		
+		//dtoEntity
+		return list;
 	}
 
 }

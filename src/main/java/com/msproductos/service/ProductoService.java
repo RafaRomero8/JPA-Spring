@@ -2,6 +2,7 @@ package com.msproductos.service;
 
 import java.util.List;
 
+import com.msproductos.dto.Product_DepaDTO;
 import com.msproductos.entity.Productos;
 import com.msproductos.exception.BussinesException;
 import com.msproductos.exception.ResourceNotFoundException;
@@ -21,6 +22,9 @@ public interface ProductoService {
 	List<Productos> search(String nombre) throws BussinesException;
 	List<Productos> precio_venta(double precio_venta)throws ResourceNotFoundException;
 	String eliminar(int id) throws BussinesException;
-	List mostrar();
-
+	List<Productos> mostrar();
+	
+	
+	//Product_DepaDTO getDepaById(String nombre)throws BussinesException;
+	List<Product_DepaDTO> getDepaById() throws BussinesException;
 }

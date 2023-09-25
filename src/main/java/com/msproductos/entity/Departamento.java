@@ -1,17 +1,21 @@
 package com.msproductos.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="DEPARTAMENTO")
+//@PrimaryKeyJoinColumn(referencedColumnName="DEPTO_ID")
 public class Departamento implements Serializable {
 
 	
@@ -30,7 +34,15 @@ public class Departamento implements Serializable {
 	
 	@Column(name="NOMBRE",columnDefinition="NVARCHAR2(20)")
 	private String nombre;
+	
+	
+	@OneToMany(mappedBy = "depa")
+	List<Productos> products;
+	
 
+	
+	Departamento(){}
+	
 	public int getDeptoId() {
 		return deptoId;
 	}

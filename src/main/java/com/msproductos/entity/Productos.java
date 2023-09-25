@@ -8,13 +8,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 
 //PRIMERA CAPA
 
 @Entity
 @Table(name="PRODUCTOS")
+//@Inheritance(strategy = InheritanceType.JOINED)
 public class Productos implements Serializable {
 //
 	/**
@@ -52,6 +58,11 @@ public class Productos implements Serializable {
 	
 	@Column(name="REFRIGERADO",columnDefinition="CHAR(1)")
 	private String refrigerado;
+	
+	@ManyToOne
+	@JoinColumn(name="DEPTO_ID",insertable = false, updatable = false)
+	private Departamento depa;
+	
 	
 	
 	public int getProductoId() {
