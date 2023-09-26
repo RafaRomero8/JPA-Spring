@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.msproductos.dto.Product_DepaDTO;
+import com.msproductos.dto.Product_DepaDTO2;
 import com.msproductos.entity.Productos;
 //DAO
 
@@ -17,7 +18,9 @@ import com.msproductos.entity.Productos;
 @Repository//componente de acceso a datos o de algun repositorio donde vamos a extraer informacion
 public interface ProductoRepository extends JpaRepository<Productos,Integer>{
 	
-	//public List<Product_DepaDTO> getByDepa();
+	
+	@Query("FROM Productos WHERE depa.nombre =:nombre")
+     List<Productos> getByDepa(@Param("nombre")String nombre);
 	
 	//JpaRepository parametrizado con 2 parametros,la entidad con la que se va a trabjar
 	//y el tipo de dato del ID(PRIMARY KEY de la tabla) del producto se le pasa un Integer(no usa datso primitivos)
@@ -26,6 +29,9 @@ public interface ProductoRepository extends JpaRepository<Productos,Integer>{
 	@Query("SELECT c FROM Productos c WHERE c.nombre LIKE %:name%")
 	//Optional<CustomerEntity> findByName(@Param("name")String name);
 	List<Productos> getfindNombres(@Param("name")String name);
+	
+	//@Query("SELECT c FROM Productos c WHERE c.refrigerado =:refrigerado"))
+	//List<Productos> findByName(@Param("nombre") String nombre);
 	
 	//Con SQL 
 	@Query(value = "SELECT * FROM PRODUCTOS WHERE PRODUCTOS.NOMBRE LIKE %:name%",
@@ -36,6 +42,8 @@ public interface ProductoRepository extends JpaRepository<Productos,Integer>{
 			 nativeQuery = true )
 	List<Productos> getfindPrecioVenta(@Param("precio_venta") double precio_venta);
 	
+	
+
 	
 //	@Query("FROM Productos  WHERE depa.nombre = :nombre")
 //	   List<Productos> getfindDepartamento(@Param("nombre")String nombre);

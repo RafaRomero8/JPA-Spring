@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.msproductos.dto.Product_DepaDTO;
+import com.msproductos.dto.Product_DepaDTO2;
+import com.msproductos.entity.Departamento;
 import com.msproductos.entity.Productos;
 import com.msproductos.exception.BussinesException;
 import com.msproductos.exception.ResourceNotFoundException;
@@ -212,7 +214,7 @@ public class ProductoImplement implements ProductoService {
 
 	
 	/*
-	//public List<Product_DepaDTO> getDepaByI() throws BussinesException {
+	public List<Product_DepaDTO> getDepaByI() throws BussinesException {
 		
 	
 	 //Productos producto = new Productos();
@@ -248,5 +250,56 @@ public class ProductoImplement implements ProductoService {
 		//dtoEntity
 		return list;
 	}
+
+	@Override
+	public List<Productos> getDepaProduct(String nombre) throws BussinesException {
+		
+		
+		return repo.getByDepa(nombre);
+//		List<Product_DepaDTO2> list = (List<Product_DepaDTO2>) new Product_DepaDTO2(product.getNombre(),product.getFecha_cad(),product.getRefrigerado());;
+//		List<Productos> product = repo.getByDepa(refrigerado);
+//		
+
+
+		//List<Product_DepaDTO2> instListF = list.stream().distinct().collect(Collectors.toList());
+		
+		//list = product.stream().map(param -> dtoEntity.convertDTO(param)).collect(Collectors.toList());
+		
+	//	List<Product_DepaDTO2> productoDTO = (List<Product_DepaDTO2>) new Product_DepaDTO2(product.getNombre(),product.getFecha_cad(),product.getRefrigerado());
+		
+		
+//		Productos producto = (Productos) repo.getByDepa(nombre);
+//		
+//		Departamento depa = (Departamento) dRepo.getByDepa(nombre);
+//		
+//		List<Product_DepaDTO2> dto = new List<Product_DepaDTO2>();
+//	
+//		dto.setNombre(producto.getNombre());
+//		dto.setNombreDepa(depa.getNombre());
+//		dto.setFecha_cad(producto.getFecha_cad());
+//		dto.setRefrigerado(producto.getRefrigerado());
+//		
+		//return instListF;
+	}
+
+//	@Override
+//	public List<Product_DepaDTO> getRefrigerado(String nombre) throws BussinesException {
+//		System.out.println("checar aqui<<<<<<<<<");
+//		List<Product_DepaDTO> list = null;
+//		try {
+//			System.out.println("checar aqui enTRY");
+//			List<Productos> productos = repo.findByName(nombre);
+//			list = productos.stream().map(param -> dtoEntity.convertDTO(param)).collect(Collectors.toList());
+//		
+//			
+//		}catch(Exception e) {
+//			System.out.println("Error " + e);
+//		}
+//		
+//		return list;
+//		
+//	}
+	
+
 
 }

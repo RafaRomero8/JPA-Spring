@@ -3,9 +3,9 @@ package com.msproductos.dto;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Product_DepaDTO implements Serializable {
+public class Product_DepaDTO2 implements Serializable {
 	
-
+	
 	private static final long serialVersionUID = 1L;
 
 	private String nombre;
@@ -14,32 +14,20 @@ public class Product_DepaDTO implements Serializable {
 	private String refrigerado;
 	
 	
-	
-	public Product_DepaDTO() {}
-	
-	
-public Product_DepaDTO(String nombre, LocalDateTime fecha_cad, String refrigerado) {
+	 public Product_DepaDTO2(){};
+	public Product_DepaDTO2(String nombre, LocalDateTime fecha_cad, String refrigerado) {
 		//super();
 		this.nombre = nombre;
 		this.fecha_cad = fecha_cad;
 		this.refrigerado = refrigerado;
 	}
-
-
-
-
-
-public String getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
-
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
-	//	public String getNombreDepa() {
+//	public String getNombreDepa() {
 //		return nombreDepa;
 //	}
 //	public void setNombreDepa(String nombreDepa) {
@@ -57,6 +45,10 @@ public String getNombre() {
 	public void setRefrigerado(String refrigerado) {
 		this.refrigerado = refrigerado;
 	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 	
 	
 

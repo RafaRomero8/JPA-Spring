@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.msproductos.dto.Product_DepaDTO;
+import com.msproductos.dto.Product_DepaDTO2;
 import com.msproductos.entity.Productos;
 import com.msproductos.generic.ProductoGeneric;
 import com.msproductos.impl.ProductoImplement;
@@ -115,16 +116,41 @@ public class ProductoController {
 	}
 	
 	
-	
+	//AQUI ES CON DTO's
 	@GetMapping("product_depa")
 	ResponseEntity <List<Product_DepaDTO>>  getDepaById(){
 		
-
 		List<Product_DepaDTO> prod = null;
 		prod = logic.getDepaById();
 		
 		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
 	}
+	
+	
+	
+	
+	@GetMapping("product_dto/{nombre}")
+ResponseEntity <List<Productos>>  getDepaProduct(@PathVariable String nombre){
+		
+		List<Productos> prod = null;
+		prod = logic.getDepaProduct(nombre);
+		
+		return new ResponseEntity<List<Productos>>(prod, HttpStatus.OK);
+	}
+	
+	
+//	@GetMapping("product_refri/{refrigerado}")
+//	ResponseEntity <List<Product_DepaDTO>>  getRefrigerado(@PathVariable String nombre){
+//			
+//System.out.println("checar aqui");
+//		List<Product_DepaDTO> prod = null;
+//		prod = logic.getRefrigerado(nombre);		
+//		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
+//	}
+//	
+	
+	
+	
 	
 //	@GetMapping("search")   //@RequestParam 
 //	public ResponseEntity<?> search(@RequestParam  String name){
