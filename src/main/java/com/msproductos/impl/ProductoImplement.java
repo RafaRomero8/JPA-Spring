@@ -3,7 +3,7 @@ package com.msproductos.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +47,8 @@ public class ProductoImplement implements ProductoService {
 	@Autowired
 	private ConvertEntityToDTO dtoEntity;
 	
+	@Autowired
+	private ModelMapper modelmapper;
 	
 	
 	public void validation(ProductosRequest request, Productos p) {
@@ -250,37 +252,58 @@ public class ProductoImplement implements ProductoService {
 		//dtoEntity
 		return list;
 	}
+	
+//	@Override
+//	public List<Productos> getDepaProduct(String nombre) throws BussinesException {
+//		return repo.getByDepa(nombre);
+//	}
 
 	@Override
-	public List<Productos> getDepaProduct(String nombre) throws BussinesException {
+	public List<Product_DepaDTO> getDepaProduct() throws BussinesException {
 		
 		
-		return repo.getByDepa(nombre);
-//		List<Product_DepaDTO2> list = (List<Product_DepaDTO2>) new Product_DepaDTO2(product.getNombre(),product.getFecha_cad(),product.getRefrigerado());;
-//		List<Productos> product = repo.getByDepa(refrigerado);
-//		
-
-
-		//List<Product_DepaDTO2> instListF = list.stream().distinct().collect(Collectors.toList());
-		
-		//list = product.stream().map(param -> dtoEntity.convertDTO(param)).collect(Collectors.toList());
-		
-	//	List<Product_DepaDTO2> productoDTO = (List<Product_DepaDTO2>) new Product_DepaDTO2(product.getNombre(),product.getFecha_cad(),product.getRefrigerado());
-		
-		
-//		Productos producto = (Productos) repo.getByDepa(nombre);
-//		
-//		Departamento depa = (Departamento) dRepo.getByDepa(nombre);
-//		
-//		List<Product_DepaDTO2> dto = new List<Product_DepaDTO2>();
-//	
-//		dto.setNombre(producto.getNombre());
-//		dto.setNombreDepa(depa.getNombre());
-//		dto.setFecha_cad(producto.getFecha_cad());
-//		dto.setRefrigerado(producto.getRefrigerado());
-//		
-		//return instListF;
+	
+		return repo.findAll().stream()
+				.map(this::convertEntityToDto)
+				.collect(Collectors.toList());
 	}
+	
+//	private  Product_DepaDTO convertEntityToDto(Productos product) {
+//		
+//		//Departamento depa = new Departamento();
+//		Product_DepaDTO productoDTO = new Product_DepaDTO();
+//		
+//		productoDTO.setNombre(product.getNombre());
+//		productoDTO.setFecha_cad(product.getFecha_cad());
+//		productoDTO.setRefrigerado(product.getRefrigerado());
+//		return productoDTO;
+//	}
+//	
+	private  Product_DepaDTO convertEntityToDto(Productos product) {
+		
+		Product_DepaDTO productoDTO = new Product_DepaDTO();
+		
+		productoDTO = modelmapper.map(product,Product_DepaDTO.class);
+	
+		return productoDTO;
+	}
+	
+
+	
+//	public  List<Product_DepaDTO> getDepaProductos(Productos product,Departamento depa){
+//		
+//		List<Product_DepaDTO> dto = null;
+//		
+//		dto.setNombre(product.getNombre());
+//		dto.setFecha_cad(product.getFecha_cad());
+//		dto.setRefrigerado(product.getRefrigerado());
+//		
+//		return  dto;
+//	
+//		
+//	}
+	
+	
 
 //	@Override
 //	public List<Product_DepaDTO> getRefrigerado(String nombre) throws BussinesException {

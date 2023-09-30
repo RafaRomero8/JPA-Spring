@@ -27,7 +27,10 @@ public interface ProductoService {
 	
 	
 	//List<Product_DepaDTO> getDepaProduct(String refrigerado)throws BussinesException;
-	List<Productos> getDepaProduct(String nombre);
+	List<Product_DepaDTO> getDepaProduct();
+	//List<Product_DepaDTO> getDepaProduct(String nombre);
+	
+	
 	
 	List<Product_DepaDTO> getDepaById() throws BussinesException;
 	//List<Product_DepaDTO> getRefrigerado(String nombre) throws BussinesException;

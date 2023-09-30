@@ -129,13 +129,13 @@ public class ProductoController {
 	
 	
 	
-	@GetMapping("product_dto/{nombre}")
-ResponseEntity <List<Productos>>  getDepaProduct(@PathVariable String nombre){
+	@GetMapping("product_dto")
+ResponseEntity <List<Product_DepaDTO>>  getDepaProduct(){
 		
-		List<Productos> prod = null;
-		prod = logic.getDepaProduct(nombre);
+		List<Product_DepaDTO> prod = null;
+		prod = logic.getDepaProduct();
 		
-		return new ResponseEntity<List<Productos>>(prod, HttpStatus.OK);
+		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
 	}
 	
 	

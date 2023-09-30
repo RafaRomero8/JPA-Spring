@@ -19,8 +19,12 @@ import com.msproductos.entity.Productos;
 public interface ProductoRepository extends JpaRepository<Productos,Integer>{
 	
 	
+//	@Query("FROM Productos WHERE depa.nombre =:nombre")
+//     List<Productos> getByDepa(@Param("nombre")String nombre);
+	
 	@Query("FROM Productos WHERE depa.nombre =:nombre")
-     List<Productos> getByDepa(@Param("nombre")String nombre);
+    List<Productos> getByDepa(@Param("nombre")String nombre);
+	
 	
 	//JpaRepository parametrizado con 2 parametros,la entidad con la que se va a trabjar
 	//y el tipo de dato del ID(PRIMARY KEY de la tabla) del producto se le pasa un Integer(no usa datso primitivos)

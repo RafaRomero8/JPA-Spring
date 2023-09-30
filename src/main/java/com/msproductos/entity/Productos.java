@@ -73,6 +73,8 @@ public class Productos implements Serializable {
 	private Departamento depa;
 	
 	
+	//@Transient
+	
 	
 	public int getProductoId() {
 		return productoId;
