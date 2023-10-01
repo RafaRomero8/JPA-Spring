@@ -3,6 +3,8 @@ package com.msproductos.repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.Tuple;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,12 +21,8 @@ import com.msproductos.entity.Productos;
 public interface ProductoRepository extends JpaRepository<Productos,Integer>{
 	
 	
-//	@Query("FROM Productos WHERE depa.nombre =:nombre")
-//     List<Productos> getByDepa(@Param("nombre")String nombre);
-	
 	@Query("FROM Productos WHERE depa.nombre =:nombre")
-    List<Productos> getByDepa(@Param("nombre")String nombre);
-	
+     List<Productos> getByDepa(@Param("nombre")String nombre);
 	
 	//JpaRepository parametrizado con 2 parametros,la entidad con la que se va a trabjar
 	//y el tipo de dato del ID(PRIMARY KEY de la tabla) del producto se le pasa un Integer(no usa datso primitivos)
@@ -46,8 +44,17 @@ public interface ProductoRepository extends JpaRepository<Productos,Integer>{
 			 nativeQuery = true )
 	List<Productos> getfindPrecioVenta(@Param("precio_venta") double precio_venta);
 	
-	
 
+//	@Query(value="SELECT D.NOMBRE,E.NOMBRE AS NOMBRE_DEPA,D.FECHA_CAD,D.REFRIGERADO "
+//			+ "FROM DEPARTAMENTO E "
+//			+ "INNER JOIN PRODUCTOS D ON E.DEPTO_ID=D.DEPTO_ID "
+//			+ "WHERE E.NOMBRE =?" ,nativeQuery = true)
+	
+	@Query(value="SELECT * "
+			+ "FROM DEPARTAMENTO E "
+			+ "INNER JOIN PRODUCTOS D ON E.DEPTO_ID=D.DEPTO_ID" ,nativeQuery = true)
+	List<Productos> getDepaProductos();
+	
 	
 //	@Query("FROM Productos  WHERE depa.nombre = :nombre")
 //	   List<Productos> getfindDepartamento(@Param("nombre")String nombre);

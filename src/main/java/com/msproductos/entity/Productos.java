@@ -76,6 +76,8 @@ public class Productos implements Serializable {
 	//@Transient
 	
 	
+	
+	
 	public int getProductoId() {
 		return productoId;
 	}

@@ -126,8 +126,7 @@ public class ProductoController {
 		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
 	}
 	
-	
-	
+		
 	
 	@GetMapping("product_dto")
 ResponseEntity <List<Product_DepaDTO>>  getDepaProduct(){
@@ -139,38 +138,15 @@ ResponseEntity <List<Product_DepaDTO>>  getDepaProduct(){
 	}
 	
 	
-//	@GetMapping("product_refri/{refrigerado}")
-//	ResponseEntity <List<Product_DepaDTO>>  getRefrigerado(@PathVariable String nombre){
-//			
-//System.out.println("checar aqui");
-//		List<Product_DepaDTO> prod = null;
-//		prod = logic.getRefrigerado(nombre);		
-//		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
-//	}
-//	
+	
+	@GetMapping("product_dtos")
+	ResponseEntity <List<Product_DepaDTO>> getDepaProductos(){
+		
+		List<Product_DepaDTO> prod = logic.getDepaProductos();
+		
+		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
+	}
 	
 	
 	
-	
-//	@GetMapping("search")   //@RequestParam 
-//	public ResponseEntity<?> search(@RequestParam  String name){
-//		
-//		try {
-////			System.out.println("checar eltry del controller");
-//			return  ResponseEntity.status(HttpStatus.OK).body(logic.search(name));
-//			
-////			List<Productos> prod = logic.buscar(name);
-////			return new ResponseEntity<List<Productos>>(prod, HttpStatus.OK);
-//			
-//		} catch (Exception e) {
-//			//return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \ "" + getMessage() +"\"}" ));
-//			//return (ResponseEntity<?>) ResponseEntity.status(HttpStatus.NOT_FOUND);
-//			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-//			
-//		}
-//		
-//	}
-	
-	
-
 }

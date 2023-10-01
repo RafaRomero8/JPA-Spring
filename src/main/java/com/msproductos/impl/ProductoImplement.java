@@ -1,9 +1,12 @@
 package com.msproductos.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -161,10 +164,6 @@ public class ProductoImplement implements ProductoService {
 		if(!repo.findById(id).isPresent()) {
 			throw new BussinesException("No existe el id a eliminar");
 		}
-		//boolean condition;
-//		int x=0,y = 0;
-//		condition =(x>y)?x:y;
-		
 		
 		repo.deleteById(id);
 		return "Eliminado";
@@ -175,24 +174,6 @@ public class ProductoImplement implements ProductoService {
 
 		return repo.findAll();
 	}
-
-//	@Override
-//	public List<Productos> search(String nombre) throws BussinesException {
-//	
-//		System.out.println("checar aqui<<<<<<");
-//		try {
-//			
-//			System.out.println("checar dentro del try<<<<<<");
-//			List<Productos> product = repo.getfindNombresSQL(nombre);
-//			return product;
-//			
-//		}catch(Exception e) {
-//			
-//			throw new BussinesException(e.getMessage());
-//			//throw new ResourceNotFoundException("Refrigerado solo puede ser 1 o 0");
-//		}
-//		
-//	}
 
 	
 	@Override
@@ -213,35 +194,6 @@ public class ProductoImplement implements ProductoService {
 		
 	}
 
-
-	
-	/*
-	public List<Product_DepaDTO> getDepaByI() throws BussinesException {
-		
-	
-	 //Productos producto = new Productos();
-//		 List<Product_DepaDTO> dto = null;
-//		 dto = repo.getByDepa
-//				 
-//				 (List<Product_DepaDTO>) new Product_DepaDTO();
-//				 
-//				 Product_DepaDTO(producto.getNombre(),
-//    				                                 //     dep.getNombre(),               
-//   		                                             producto.getFecha_cad(),
-//   		                                             producto.getRefrigerado() );
-		
-		
-		
-//    		  
-//		dto.setNombreProducto(producto.getNombre());
-//		dto.setNombreDepa(dep.getNombre());
-//		dto.setFecha_cad(producto.getFecha_cad());
-//		dto.setRefrigerado(producto.getRefrigerado());
-		
-
-		
-	//}
-*/
 	@Override
 	public List<Product_DepaDTO> getDepaById() throws BussinesException {
 		
@@ -262,11 +214,14 @@ public class ProductoImplement implements ProductoService {
 	public List<Product_DepaDTO> getDepaProduct() throws BussinesException {
 		
 		
-	
+		
 		return repo.findAll().stream()
 				.map(this::convertEntityToDto)
 				.collect(Collectors.toList());
 	}
+	
+	
+
 	
 //	private  Product_DepaDTO convertEntityToDto(Productos product) {
 //		
@@ -280,48 +235,116 @@ public class ProductoImplement implements ProductoService {
 //	}
 //	
 	private  Product_DepaDTO convertEntityToDto(Productos product) {
-		
+		//SIMPLIFICADO
 		Product_DepaDTO productoDTO = new Product_DepaDTO();
 		
 		productoDTO = modelmapper.map(product,Product_DepaDTO.class);
+		
 	
 		return productoDTO;
 	}
 	
+	
+	private  Product_DepaDTO convertEntityToDtos(Productos product,Departamento dep) {
+		//SIMPLIFICADO
+	//	Product_DepaDTO productoDTO = new Product_DepaDTO();
+		
+		//productoDTO = modelmapper.map(product,Product_DepaDTO.class);
+		
+		ModelMapper modelMapper = new ModelMapper();
+		Product_DepaDTO dto= modelMapper.map(product,Product_DepaDTO.class);
+		//This will add additional values to the dto.
+		modelMapper.map(dep, dto);
+		
+	
+		
+//		ntegratorDTO dto= modelMapper.map(details, IntegratorDTO.class);
+//		//This will add additional values to the dto.
+//		modelMapper.map(integratorChannelDetails, dto);
+		
+		return dto;
+	}
+
 
 	
-//	public  List<Product_DepaDTO> getDepaProductos(Productos product,Departamento depa){
+//	@Override
+//	public List<Product_DepaDTO> getDepaProductos(String nombre) throws BussinesException {
 //		
-//		List<Product_DepaDTO> dto = null;
+//		return repo.findAll().stream()
+//				.map(this::convertEntityToDtos)
+//				.collect(Collectors.toList());
+//	}
+	
+//	@Override
+//	public Product_DepaDTO  getDepaProductos(String nombre){
 //		
-//		dto.setNombre(product.getNombre());
-//		dto.setFecha_cad(product.getFecha_cad());
-//		dto.setRefrigerado(product.getRefrigerado());
+//		Optional<Productos> product = repo.getDepaProductos(nombre);
 //		
-//		return  dto;
+//		 Departamento depa = dRepo.getDepaProductos(nombre);
+//		 
+//		 Productos productos = product.get();
+//		
+//		  List<Product_DepaDTO> dto =  new Product_DepaDTO();
+//		
+//
+//		
+//		return  Product_DepaDTO;
 //	
 //		
 //	}
 	
 	
-
 //	@Override
-//	public List<Product_DepaDTO> getRefrigerado(String nombre) throws BussinesException {
-//		System.out.println("checar aqui<<<<<<<<<");
-//		List<Product_DepaDTO> list = null;
-//		try {
-//			System.out.println("checar aqui enTRY");
-//			List<Productos> productos = repo.findByName(nombre);
-//			list = productos.stream().map(param -> dtoEntity.convertDTO(param)).collect(Collectors.toList());
-//		
-//			
-//		}catch(Exception e) {
-//			System.out.println("Error " + e);
+//	public List<Product_DepaDTO> getDepaProducts() throws BussinesException {
+//        final Optional<List<Productos>> productos = Optional.ofNullable(repo.getDepaProductos());
+//         final Optional<List<Departamento>> departamentos = Optional.empty();
+//
+//        final List<Productos> p = productos.get();
+//       final List<Departamento> d = departamentos.get();
+//       List<Product_DepaDTO> dto = new ArrayList<Product_DepaDTO>();
+//        
+//       for (int i = 0; i < p.size(); i++) {
+//			Product_DepaDTO pd_dto = new Product_DepaDTO();
+//			pd_dto.setNombre(p.get(i).getNombre());
+//			for (int j = 0; j < d.size(); j++) {
+//				pd_dto.setNombreDepa(d.get(j).getNombre());
+//			}
+//			pd_dto.setFecha_cad(p.get(i).getFecha_cad());
+//			pd_dto.setRefrigerado(p.get(i).getRefrigerado());
+//	
 //		}
-//		
-//		return list;
-//		
-//	}
+//          
+//           		
+//   return dto;
+//
+//        	//return	new List<Product_DepaDTO>(p.getNombre(),d.getNombre(),p.getFecha_cad(),p.getRefrigerado());
+//}
+
+	@Override
+	public List<Product_DepaDTO> getDepaProductos() throws BussinesException {
+		
+		List<Productos> p= repo.getDepaProductos();   
+		List<Departamento> d= dRepo.getDepaProductos();   
+		List<Product_DepaDTO> dto =  new ArrayList<>();  
+       
+		for (int i = 0; i < p.size(); i++) {
+			Product_DepaDTO pd_dto = new Product_DepaDTO();
+			pd_dto.setNombre(p.get(i).getNombre());
+			for (int j = 0; j < d.size(); j++) {
+				pd_dto.setNombreDepa(d.get(j).getNombre());
+			}
+			pd_dto.setFecha_cad(p.get(i).getFecha_cad());
+			pd_dto.setRefrigerado(p.get(i).getRefrigerado());
+			dto.add(pd_dto);
+	
+		}
+		return dto;
+        
+
+}
+
+	
+	
 	
 
 

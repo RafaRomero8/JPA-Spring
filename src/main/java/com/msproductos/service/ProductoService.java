@@ -2,6 +2,8 @@ package com.msproductos.service;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
+
 import com.msproductos.dto.Product_DepaDTO;
 import com.msproductos.dto.Product_DepaDTO2;
 import com.msproductos.entity.Productos;
@@ -26,12 +28,20 @@ public interface ProductoService {
 	List<Productos> mostrar();
 	
 	
+	
+	//ModelMapper
 	//List<Product_DepaDTO> getDepaProduct(String refrigerado)throws BussinesException;
 	List<Product_DepaDTO> getDepaProduct();
 	//List<Product_DepaDTO> getDepaProduct(String nombre);
+	
+
+	
+	List<Product_DepaDTO> getDepaProductos();
 	
 	
 	
 	List<Product_DepaDTO> getDepaById() throws BussinesException;
 	//List<Product_DepaDTO> getRefrigerado(String nombre) throws BussinesException;
+	
+	
 }
