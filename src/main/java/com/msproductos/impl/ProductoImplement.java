@@ -320,6 +320,8 @@ public class ProductoImplement implements ProductoService {
 //        	//return	new List<Product_DepaDTO>(p.getNombre(),d.getNombre(),p.getFecha_cad(),p.getRefrigerado());
 //}
 
+	
+	
 	@Override
 	public List<Product_DepaDTO> getDepaProductos() throws BussinesException {
 		
@@ -344,7 +346,29 @@ public class ProductoImplement implements ProductoService {
 }
 
 	
+	@Override
+	public List<Product_DepaDTO> getDepaProductosDTOByName(String nombreDepa) throws BussinesException {
+		
+		List<Productos> p= repo.getDepaProductosbyName(nombreDepa);   
+		List<Departamento> d= dRepo.getDepaProductosbyName(nombreDepa);   
+		List<Product_DepaDTO> dto =  new ArrayList<>();  
+       
+		for (int i = 0; i < p.size(); i++) {
+			Product_DepaDTO pd_dto = new Product_DepaDTO();
+			pd_dto.setNombre(p.get(i).getNombre());
+			for (int j = 0; j < d.size(); j++) {
+				pd_dto.setNombreDepa(d.get(j).getNombre());
+			}
+			pd_dto.setFecha_cad(p.get(i).getFecha_cad());
+			pd_dto.setRefrigerado(p.get(i).getRefrigerado());
+			dto.add(pd_dto);
 	
+		}
+		return dto;
+        
+
+}
+
 	
 
 

@@ -45,10 +45,11 @@ public interface ProductoRepository extends JpaRepository<Productos,Integer>{
 	List<Productos> getfindPrecioVenta(@Param("precio_venta") double precio_venta);
 	
 
-//	@Query(value="SELECT D.NOMBRE,E.NOMBRE AS NOMBRE_DEPA,D.FECHA_CAD,D.REFRIGERADO "
-//			+ "FROM DEPARTAMENTO E "
-//			+ "INNER JOIN PRODUCTOS D ON E.DEPTO_ID=D.DEPTO_ID "
-//			+ "WHERE E.NOMBRE =?" ,nativeQuery = true)
+	@Query(value="SELECT * "
+			+ "FROM DEPARTAMENTO E "
+			+ "INNER JOIN PRODUCTOS D ON E.DEPTO_ID=D.DEPTO_ID "
+			+ "WHERE E.NOMBRE =:nombreDepa" ,nativeQuery = true)
+	List<Productos> getDepaProductosbyName(String nombreDepa);
 	
 	@Query(value="SELECT * "
 			+ "FROM DEPARTAMENTO E "

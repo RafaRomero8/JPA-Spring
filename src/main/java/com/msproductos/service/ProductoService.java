@@ -35,9 +35,10 @@ public interface ProductoService {
 	//List<Product_DepaDTO> getDepaProduct(String nombre);
 	
 
-	
+	//Con dos entidades dtos-----------------
 	List<Product_DepaDTO> getDepaProductos();
-	
+	List<Product_DepaDTO> getDepaProductosDTOByName(String nombreDepa);
+	//----------------------------------------------
 	
 	
 	List<Product_DepaDTO> getDepaById() throws BussinesException;

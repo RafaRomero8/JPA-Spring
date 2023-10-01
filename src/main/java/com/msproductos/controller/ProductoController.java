@@ -147,6 +147,13 @@ ResponseEntity <List<Product_DepaDTO>>  getDepaProduct(){
 		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
 	}
 	
-	
+
+	@GetMapping("product_dtosByName/{nombreDepa}")
+	ResponseEntity <List<Product_DepaDTO>> getDepaProductosDTOByName(@PathVariable String nombreDepa){
+		
+		List<Product_DepaDTO> prod = logic.getDepaProductosDTOByName(nombreDepa);
+		
+		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
+	}
 	
 }
