@@ -3,6 +3,7 @@ package com.msproductos.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Departamento implements Serializable {
 	private String nombre;
 	
 	
-	@OneToMany(mappedBy = "depa")
+	@OneToMany(mappedBy = "depa",cascade = CascadeType.ALL)
 	List<Productos> products;
 	
 
@@ -58,6 +59,9 @@ public class Departamento implements Serializable {
 	public void setEmpleadoId(int empleadoId) {
 		this.empleadoId = empleadoId;
 	}
+
+	
+
 
 	public String getNombre() {
 		return nombre;

@@ -213,8 +213,6 @@ public class ProductoImplement implements ProductoService {
 	@Override
 	public List<Product_DepaDTO> getDepaProduct() throws BussinesException {
 		
-		
-		
 		return repo.findAll().stream()
 				.map(this::convertEntityToDto)
 				.collect(Collectors.toList());
@@ -354,13 +352,17 @@ public class ProductoImplement implements ProductoService {
 		List<Product_DepaDTO> dto =  new ArrayList<>();  
        
 		for (int i = 0; i < p.size(); i++) {
+			
 			Product_DepaDTO pd_dto = new Product_DepaDTO();
+			
 			pd_dto.setNombre(p.get(i).getNombre());
-			for (int j = 0; j < d.size(); j++) {
-				pd_dto.setNombreDepa(d.get(j).getNombre());
-			}
 			pd_dto.setFecha_cad(p.get(i).getFecha_cad());
 			pd_dto.setRefrigerado(p.get(i).getRefrigerado());
+			pd_dto.setPrecio_compra(p.get(i).getPrecio_compra());
+			for (int j = 0; j < d.size(); j++) {
+				pd_dto.setNombreDepa(d.get(j).getNombre());
+				//dto.add(pd_dto);
+			}
 			dto.add(pd_dto);
 	
 		}
