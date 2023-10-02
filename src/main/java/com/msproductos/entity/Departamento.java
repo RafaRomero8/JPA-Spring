@@ -37,7 +37,7 @@ public class Departamento implements Serializable {
 	private String nombre;
 	
 	
-	@OneToMany(mappedBy = "depa",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "depa")
 	List<Productos> products;
 	
 

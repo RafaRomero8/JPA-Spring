@@ -3,7 +3,6 @@ package com.msproductos.repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.Tuple;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,8 +18,8 @@ import com.msproductos.entity.Productos;
 //LA QUE ENGLOBA LAS CONSULTAS
 @Repository//componente de acceso a datos o de algun repositorio donde vamos a extraer informacion
 public interface ProductoRepository extends JpaRepository<Productos,Integer>{
-	
-	
+
+	 
 	@Query("FROM Productos WHERE depa.nombre =:nombre")
      List<Productos> getByDepa(@Param("nombre")String nombre);
 	
@@ -55,10 +54,13 @@ public interface ProductoRepository extends JpaRepository<Productos,Integer>{
 			+ "WHERE D.NOMBRE =:nombreDepa" ,nativeQuery = true)
 	List<Productos> getDepaProductosbyName(@Param("nombreDepa") String nombreDepa);
 	
-	@Query(value="SELECT * "
-			+ "FROM DEPARTAMENTO E "
-			+ "INNER JOIN PRODUCTOS D ON E.DEPTO_ID=D.DEPTO_ID" ,nativeQuery = true)
+//	@Query(value="SELECT * "
+//			+ "FROM DEPARTAMENTO E "
+//			+ "INNER JOIN PRODUCTOS D ON E.DEPTO_ID=D.DEPTO_ID" ,nativeQuery = true)
 	 //@Query("SELECT * FROM Departamento d INNER JOIN d.products p")
+	@Query(value="SELECT * "
+			+ "FROM PRODUCTOS E "
+			+ "INNER JOIN  DEPARTAMENTO D ON E.DEPTO_ID=D.DEPTO_ID" ,nativeQuery = true)
 	List<Productos> getDepaProductos();
 	
 	

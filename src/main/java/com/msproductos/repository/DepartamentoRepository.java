@@ -29,8 +29,8 @@ public interface DepartamentoRepository extends JpaRepository<Departamento,Integ
 	
 	 
 	@Query(value="SELECT * "
-			+ "FROM DEPARTAMENTO E "
-			+ "INNER JOIN PRODUCTOS D ON E.DEPTO_ID=D.DEPTO_ID" ,nativeQuery = true)
+			+ "FROM PRODUCTOS E "
+			+ "INNER JOIN  DEPARTAMENTO D ON E.DEPTO_ID=D.DEPTO_ID" ,nativeQuery = true)
 	// @Query("SELECT * FROM Departamento d INNER JOIN d.products p")
 	List<Departamento> getDepaProductos();
 	
