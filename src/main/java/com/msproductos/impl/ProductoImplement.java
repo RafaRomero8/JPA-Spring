@@ -1,13 +1,20 @@
 package com.msproductos.impl;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.Tuple;
+
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.json.JSONObject;
+import org.json.JSONException;
 import org.springframework.stereotype.Service;
 
 import com.msproductos.dto.Product_DepaDTO;
@@ -243,25 +250,7 @@ public class ProductoImplement implements ProductoService {
 	}
 	
 	
-	private  Product_DepaDTO convertEntityToDtos(Productos product,Departamento dep) {
-		//SIMPLIFICADO
-	//	Product_DepaDTO productoDTO = new Product_DepaDTO();
-		
-		//productoDTO = modelmapper.map(product,Product_DepaDTO.class);
-		
-		ModelMapper modelMapper = new ModelMapper();
-		Product_DepaDTO dto= modelMapper.map(product,Product_DepaDTO.class);
-		//This will add additional values to the dto.
-		modelMapper.map(dep, dto);
-		
 	
-		
-//		ntegratorDTO dto= modelMapper.map(details, IntegratorDTO.class);
-//		//This will add additional values to the dto.
-//		modelMapper.map(integratorChannelDetails, dto);
-		
-		return dto;
-	}
 
 
 	
@@ -361,7 +350,8 @@ public class ProductoImplement implements ProductoService {
 	public List<Product_DepaDTO> getDepaProductosDTOByName(String nombreDepa) throws BussinesException {
 		
 		List<Productos> p= repo.getDepaProductosbyName(nombreDepa);   
-		List<Departamento> d= dRepo.getDepaProductosbyName(nombreDepa);   
+		List<Departamento> d= dRepo.getDepaProductosbyName(nombreDepa);  
+
 		List<Product_DepaDTO> dto =  new ArrayList<>();  
        
 		for (int i = 0; i < p.size(); i++) {
@@ -384,7 +374,91 @@ public class ProductoImplement implements ProductoService {
 
 }
 
+	//Con tupla
 	
+	@Override
+	public List<Product_DepaDTO> getTupleDTOByName() throws BussinesException {
+		
+		//List<Tuple> p= repo.getTupleDepaProductosbyName(nombreDepa);   
+		List<Productos> p= repo.getTupleDepaProductosbyName();   
+		
+		List<Departamento> d= dRepo.getTupleDepaProductosbyName();  
+
+		List<Product_DepaDTO> dto =  new ArrayList<>(); 
+		
+		for(Productos t:p) {
+              Product_DepaDTO pd_dto = new Product_DepaDTO();
+			 pd_dto.setNombre(t.getNombre());
+			 pd_dto.setFecha_cad(t.getFecha_cad());
+				pd_dto.setRefrigerado(t.getRefrigerado());
+				pd_dto.setPrecio_compra(t.getPrecio_compra());
+				for(Departamento de:d) {					
+					 pd_dto.setNombreDepa(de.getNombre());
+				}				
+				dto.add(pd_dto);
+			
+		}
+       
+		return dto;
+        
+
+}
+	
+	public  String getName(String nombre){
+		
+		//Persona p = repo.getNameProduct();
+	    String c = null;
+	    c=repo.getNameProduct(nombre);
+		return c;
+
+	}
+	
+	public List<Product_DepaDTO> getTupleDTO(String nombreDepa) {
+		
+		List<Tuple> tpl = repo.getTupleName(nombreDepa);
+		
+		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		List<Product_DepaDTO> dto = new ArrayList<>();
+		
+		
+		for(Tuple product:tpl) {
+			//LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+	
+			Product_DepaDTO pd = new Product_DepaDTO();
+			pd.setNombre(String.valueOf(product.get("NOMBRE").toString()));
+			pd.setFecha_cad(String.valueOf(product.get("FECHA_CAD").toString()));
+			pd.setRefrigerado(String.valueOf(product.get("REFRIGERADO").toString()));
+			pd.setNombreDepa(String.valueOf(product.get("NOMBRE_DEPA").toString()));
+			pd.setPrecio_compra(Double.parseDouble(product.get("PRECIO_COMPRA").toString()));
+			dto.add(pd);
+		}
+		
+		return dto;
+		 
+	}
+	
+	public List<Product_DepaDTO> getTupleDTO2() {
+		
+		List<Tuple> tpl = repo.getTupleName2();
+		
+		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		List<Product_DepaDTO> dto = new ArrayList<>();
+		Product_DepaDTO pd = new Product_DepaDTO();
+		for(Tuple product:tpl) {
+			//LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+	
+		
+			pd.setNombre(String.valueOf(product.get("NOMBRE").toString()));
+			pd.setFecha_cad(String.valueOf(product.get("FECHA_CAD").toString()));
+			pd.setRefrigerado(String.valueOf(product.get("REFRIGERADO").toString()));
+			pd.setNombreDepa(String.valueOf(product.get("NOMBRE_DEPA").toString()));
+			pd.setPrecio_compra(Double.parseDouble(product.get("PRECIO_COMPRA").toString()));
+			dto.add(pd);
+		}
+		
+		return dto;
+		 
+	}
 
 
 }

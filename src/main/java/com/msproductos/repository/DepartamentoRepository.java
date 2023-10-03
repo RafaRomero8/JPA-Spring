@@ -2,6 +2,8 @@ package com.msproductos.repository;
 
 import java.util.List;
 
+import javax.persistence.Tuple;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -35,8 +37,11 @@ public interface DepartamentoRepository extends JpaRepository<Departamento,Integ
 	List<Departamento> getDepaProductos();
 	
 	
-	// Departamento findByDepartamento(String nombre);
+	@Query(value="SELECT * "
+			+ "FROM PRODUCTOS E "
+			+ "INNER JOIN  DEPARTAMENTO D ON D.DEPTO_ID=E.DEPTO_ID",nativeQuery = true)
+	List<Departamento> getTupleDepaProductosbyName();
 	
-	//List<Departamento> getByDepa(String nombre);
+
 
 }

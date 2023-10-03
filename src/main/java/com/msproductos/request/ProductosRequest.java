@@ -22,7 +22,7 @@ public class ProductosRequest {
 	@NotBlank(message="El  atributo nombre no puede estar vacio ni quedar en blanco")
 	private String nombre;
 	@Future(message="La fecha de caducidad debe ser mayor a la fecha actual")//checar que la fecha se mayor al actual
-	private LocalDateTime fecha_cad;
+	private String fecha_cad;
 	@Digits(integer = 3/*precision*/, fraction = 2 /*scale*/)
 	private double precio_compra;
 	@Digits(integer = 3 /*precision*/, fraction = 2 /*scale*/)
@@ -49,7 +49,7 @@ public class ProductosRequest {
 		return productoId;
 	}
 
-	public ProductosRequest(int productoId, int deptoID, String nombre, LocalDateTime fecha_cad,
+	public ProductosRequest(int productoId, int deptoID, String nombre, String fecha_cad,
 			double precio_compra, double precio_venta, String refrigerado, List<Productos> lisProductos) {
 		
 		//super();
@@ -83,11 +83,11 @@ public class ProductosRequest {
 		this.nombre = nombre;
 	}
 
-	public LocalDateTime getFecha_cad() {
+	public String getFecha_cad() {
 		return fecha_cad;
 	}
 
-	public void setFecha_cad(LocalDateTime fecha_cad) {
+	public void setFecha_cad(String fecha_cad) {
 		this.fecha_cad = fecha_cad;
 	}
 

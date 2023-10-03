@@ -11,11 +11,12 @@ public class Product_DepaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String nombre;
-	private LocalDateTime fecha_cad;
+	//private LocalDateTime fecha_cad;
+	private String fecha_cad;
 	private String refrigerado;
 	private double precio_compra;
 	private String nombreDepa;
-	
+	//private int empleadoId;
 	
 	
 	public Product_DepaDTO() {}
@@ -27,14 +28,33 @@ public class Product_DepaDTO implements Serializable {
 	}
 
 
-public Product_DepaDTO(String nombre, LocalDateTime fecha_cad, String refrigerado,
-			double precio_compra,String nombreDepa) {
+
+
+
+
+
+
+
+public Product_DepaDTO(String nombre, String fecha_cad, String refrigerado, double precio_compra,
+			String nombreDepa) {
 		//super();
 		this.nombre = nombre;
 		this.fecha_cad = fecha_cad;
 		this.refrigerado = refrigerado;
 		this.precio_compra = precio_compra;
 		this.nombreDepa = nombreDepa;
+	}
+
+
+
+public String getFecha_cad() {
+		return fecha_cad;
+	}
+
+
+
+	public void setFecha_cad(String fecha_cad) {
+		this.fecha_cad = fecha_cad;
 	}
 
 
@@ -71,14 +91,7 @@ public String getNombre() {
 		this.precio_compra = precio_compra;
 	}
 
-
-
-	public LocalDateTime getFecha_cad() {
-		return fecha_cad;
-	}
-	public void setFecha_cad(LocalDateTime fecha_cad) {
-		this.fecha_cad = fecha_cad;
-	}
+	
 	public String getRefrigerado() {
 		return refrigerado;
 	}

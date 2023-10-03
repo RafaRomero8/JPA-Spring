@@ -156,4 +156,49 @@ ResponseEntity <List<Product_DepaDTO>>  getDepaProduct(){
 		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
 	}
 	
+//	@GetMapping("product_tupleByName/{nombreDepa}")
+//	ResponseEntity <List<Product_DepaDTO>> getTupleDTOByName(@PathVariable String nombreDepa){
+//		
+//		List<Product_DepaDTO> prod = logic.getTupleDTOByName(nombreDepa);
+//		
+//		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
+//	}
+	
+	@GetMapping("product_tupleByName")
+	ResponseEntity <List<Product_DepaDTO>> getTupleDTOByName(){
+		
+		List<Product_DepaDTO> prod = logic.getTupleDTOByName();
+		
+		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("getByName/{nombre}")
+	ResponseEntity <String> getName(@PathVariable String nombre) {
+		
+		String prod = logic.getName(nombre);
+		return new ResponseEntity<String>(prod,HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("getByNameTuple/{nombreDepa}")
+	ResponseEntity <List<Product_DepaDTO>> getTupleDTO(@PathVariable String nombreDepa){
+		
+         List<Product_DepaDTO> prod = logic.getTupleDTO(nombreDepa);
+		
+		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("getByNameTuple2")
+	ResponseEntity <List<Product_DepaDTO>> getTupleDTO2(){
+		
+         List<Product_DepaDTO> prod = logic.getTupleDTO2();
+		
+		return new ResponseEntity<List<Product_DepaDTO>>(prod, HttpStatus.OK);
+		
+	}
+	
+	
+	
 }

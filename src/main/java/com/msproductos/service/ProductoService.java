@@ -38,11 +38,18 @@ public interface ProductoService {
 	//Con dos entidades dtos-----------------
 	List<Product_DepaDTO> getDepaProductos();
 	List<Product_DepaDTO> getDepaProductosDTOByName(String nombreDepa);
+	List<Product_DepaDTO> getTupleDTOByName();
+	List<Product_DepaDTO> getTupleDTO(String nombreDepa);//utiliza un Tuple
+	List<Product_DepaDTO> getTupleDTO2();//utiliza un Tuple
 	//----------------------------------------------
 	
 	
 	List<Product_DepaDTO> getDepaById() throws BussinesException;
 	//List<Product_DepaDTO> getRefrigerado(String nombre) throws BussinesException;
+	
+	String getName(String nombre);
+	
+	
 	
 	
 }

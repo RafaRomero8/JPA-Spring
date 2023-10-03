@@ -50,7 +50,7 @@ public class Productos implements Serializable {
 	private String nombre;
 	
 	@Column(name="FECHA_CAD",columnDefinition="DATE")
-	private LocalDateTime fecha_cad;
+	private String fecha_cad;
 	
 	@Column(name="PRECIO_COMPRA",columnDefinition="NUMBER(5,2)")
 	private double precio_compra;
@@ -93,10 +93,10 @@ public class Productos implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public LocalDateTime getFecha_cad() {
+	public String getFecha_cad() {
 		return fecha_cad;
 	}
-	public void setFecha_cad(LocalDateTime fecha_cad) {
+	public void setFecha_cad(String fecha_cad) {
 		this.fecha_cad = fecha_cad;
 	}
 	public double getPrecio_compra() {

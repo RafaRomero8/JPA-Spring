@@ -33,7 +33,7 @@ public class Departamento implements Serializable {
 	@Column(name="EMPLEADO_ID",columnDefinition="NUMBER")
    private int empleadoId;
 	
-	@Column(name="NOMBRE",columnDefinition="NVARCHAR2(20)")
+	@Column(name="NOMBRE_DEPA",columnDefinition="NVARCHAR2(20)")
 	private String nombre;
 	
 	

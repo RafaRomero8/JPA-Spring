@@ -3,6 +3,7 @@ package com.msproductos.repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.Tuple;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -64,24 +65,36 @@ public interface ProductoRepository extends JpaRepository<Productos,Integer>{
 	List<Productos> getDepaProductos();
 	
 	
-//	@Query("FROM Productos  WHERE depa.nombre = :nombre")
-//	   List<Productos> getfindDepartamento(@Param("nombre")String nombre);
-//	
-
-//@Query(value="SELECT p.nombre,p.\r\n" + 
-//					"FROM Productos p\r\n" + 
-//					"INNER JOIN p.depa d\r\n" +
-//					"WHERE d.nombre = :nombre")
-//	   List<Productos> getfindDepartamento(@Param("nombre")String nombre);
-//	
+//	@Query(value="SELECT * "
+//			+ "FROM PRODUCTOS E "
+//			+ "INNER JOIN  DEPARTAMENTO D ON D.DEPTO_ID=E.DEPTO_ID "
+//			+ "WHERE D.NOMBRE =:nombreDepa" ,nativeQuery = true)
+//	List<Productos> getTupleDepaProductosbyName(@Param("nombreDepa") String nombreDepa);
 	
-//@Query(value="SELECT p FROM Product_DepaDTO WHERE nombre =:nombre ")
-//List<Product_DepaDTO> getfindDepartamento(@Param("nombre")String nombre);
+	@Query(value="SELECT * "
+			+ "FROM PRODUCTOS E "
+			+ "INNER JOIN  DEPARTAMENTO D ON D.DEPTO_ID=E.DEPTO_ID",nativeQuery = true)
+	List<Productos> getTupleDepaProductosbyName();
+	
+	
+	@Query("select c.nombre,c.precio_compra from Productos c where c.nombre= ?1")
+	String getNameProduct(String nombre);
+	
+	
+	
+	@Query(value="SELECT E.NOMBRE,D.NOMBRE_DEPA,E.FECHA_CAD,E.REFRIGERADO,E.PRECIO_COMPRA "
+			+ "FROM PRODUCTOS E "
+			+ "INNER JOIN  DEPARTAMENTO D ON D.DEPTO_ID=E.DEPTO_ID "
+			+ "WHERE D.NOMBRE_DEPA =:nombreDepa",nativeQuery = true)
+	List<Tuple> getTupleName(@Param("nombreDepa") String nombreDepa);
+	
+	@Query(value="SELECT E.NOMBRE,D.NOMBRE_DEPA,E.FECHA_CAD,E.REFRIGERADO,E.PRECIO_COMPRA "
+			+ "FROM PRODUCTOS E "
+			+ "INNER JOIN  DEPARTAMENTO D ON D.DEPTO_ID=E.DEPTO_ID",nativeQuery = true)
+	List<Tuple> getTupleName2();
 
-//	@Query(
-//			
-//			value="SELECT PRODUCTOS0_.NOMBRE AS nombre1_1_,PRODUCTOS0_.FECHA_CAD AS fecha_cad2_1_,PRODUCTOS0_.REFRIGERADO AS refrigerado3_1_ FROM PRODUCTOS PRODUCTOS0_ INNER JOIN DEPARTAMENTO DEPA1_ ON PRODUCTOS0_.DEPTO_ID=DEPA1_.DEPTO_ID WHERE DEPA1_.NOMBRE  = (?1)",
-//			nativeQuery = true)
-//	   List<Productos> getfindDepartamento(@Param("nombre")String nombre);
+
+
+
 	
 }
